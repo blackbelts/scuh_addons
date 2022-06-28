@@ -1,0 +1,166 @@
+<odoo>
+    <data>
+        <!-- explicit list view definition -->
+
+        <record model="ir.ui.view" id="modify_purchaseee">
+            <field name="name">modify_purchase list</field>
+
+            <field name="model">modify_purchase.modify_purchase</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button string="Generate vendor report" name="generate_reportttt" type="object"  />
+<!--                        <button string="Generate Vendor report" name="generate_vendor_report" type="object"  />-->
+<!--                        <button string="Generate Product report" name="generate_product_report" type="object"  />-->
+<!--                        <button string="Inventory" name="generate_inventory_report" type="object"  />-->
+
+
+                        <field name="state" widget="statusbar" nolabel="1"/>
+                        <button string="Approved" type="object" name="emp_cancel" class="oe_highlight"
+                                attrs="{'invisible': [('state','!=','pending')]}"/>
+                        <button string="Draft" type="object" name="emp_approved" class="oe_highlight"
+                                attrs="{'invisible': [('state','!=','first')]}"/>
+                    </header>
+                    <sheet>
+                        <group style="width:50%">
+                            <field name="tender_no"/>
+
+                            <field name="Type"/>
+                            <field name="vendorr"/>
+                            <field name="order_deadline"/>
+                            <!--                            <field name="tender_no"/>-->
+                        </group>
+                        <notebook>
+
+                            <page string=" Name">
+                                <field name="namee" widget="one2many_tags">
+                                    <tree editable="bottom">
+                                        <field name="Vendor" />
+                                        <field name="vendor_name"  />
+<!--                                        <field name="vendor_2"  />-->
+<!--                                        <field name="vendor_3"  />-->
+<!--                                        <field name="vendor_4"  />-->
+<!--                                        <field name="vendor_5"  />-->
+                                        <!--                                        <field name="Price"  />-->
+                                    </tree>
+                                </field>
+                            </page>
+
+                            <page string=" Financial Proposal">
+                                <field name="offer_line" widget="one2many_tags">
+                                    <tree editable="bottom">
+                                        <!--                                        <field name="Vendor"   />-->
+                                        <field name="Product"  />
+                                        <field name="vendor_1"  />
+                                        <field name="vendor_2"  />
+                                        <field name="vendor_3"  />
+                                        <field name="vendor_4"  />
+                                        <field name="vendor_5"  />
+                                        <!--                                        <field name="Price"  />-->
+                                    </tree>
+                                </field>
+                            </page>
+
+                            <page string="Technical Proposal">
+                                <field name="Technical_Proposal" widget="one2many_tags">
+                                    <tree editable="bottom">
+                                        <field name="Criteria_Rating"   />
+                                        <field name="vendor_11"  />
+                                        <field name="vendor_22"  />
+                                        <field name="vendor_33"  />
+                                        <field name="vendor_44"  />
+                                        <field name="vendor_55"  />
+
+                                    </tree>
+                                </field>
+                            </page>
+
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="modify_purchase_tree">
+            <field name="name">Check List  Score</field>
+            <field name="model">modify_purchase.modify_purchase</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="tender_no"/>
+
+                    <field name="Type"/>
+                    <field name="vendorr"/>
+                    <field name="order_deadline"/>
+                    <field name="state"/>
+
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="modify_purchasee">
+            <field name="name">modify_purchase window</field>
+            <field name="res_model">modify_purchase.modify_purchase</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <!-- actions opening views on models -->
+
+
+
+        <!--      <record model="ir.actions.act_window" id="modify_purchase_action_window">-->
+        <!--            <field name="name">Sector Window</field>-->
+        <!--            <field name="res_model">scuh_purchase.scuh_purchase</field>-->
+        <!--            <field name="view_mode">tree,form</field>-->
+        <!--            &lt;!&ndash;            <field name="view_id" ref="check_score"></field>&ndash;&gt;-->
+        <!--            &lt;!&ndash;            <field name="context">{'default_survey_type': 'CHECKLIST'}</field>&ndash;&gt;-->
+        <!--            &lt;!&ndash;            <field name="domain">[('survey_type' , '=' ,'CHECKLIST')]</field>&ndash;&gt;-->
+        <!--        </record>-->
+
+        <menuitem name="Vendor proposal" id="modify_purchase"
+                  parent="purchase.menu_purchase_root"
+                  action="modify_purchasee"/>
+
+
+        <!-- server action to the one above -->
+        <!--
+            <record model="ir.actions.server" id="scuh_purchase.action_server">
+              <field name="name">scuh_purchase server</field>
+              <field name="model_id" ref="model_modify_purchase_modify_purchase"/>
+              <field name="state">code</field>
+              <field name="code">
+                action = {
+                  "type": "ir.actions.act_window",
+                  "view_mode": "tree,form",
+                  "res_model": model._name,
+                }
+              </field>
+            </record>
+        -->
+        <!--    <record id="pur_action" model="ir.actions.act_window">-->
+        <!--        <field name="name">Purchase</field>-->
+        <!--        <field name="res_model">scuh_purchase.scuh_purchase</field>-->
+        <!--        &lt;!&ndash;        <field name="inherit_id" ref="hr_attendance.view_attendance_tree"/>&ndash;&gt;-->
+        <!--        <field name="view_mode">form</field>-->
+        <!--        <field name="view_id" ref="emplyee_report"></field>-->
+        <!--        <field name="target">new</field>-->
+        <!--    </record>-->
+
+
+        <!-- Top menu item -->
+        <!--
+            <menuitem name="scuh_purchase" id="scuh_purchase.menu_root"/>
+        -->
+        <!-- menu categories -->
+        <!--
+            <menuitem name="Menu 1" id="scuh_purchase.menu_1" parent="scuh_purchase.menu_root"/>
+            <menuitem name="Menu 2" id="scuh_purchase.menu_2" parent="scuh_purchase.menu_root"/>
+        -->
+        <!-- actions -->
+        <!--
+            <menuitem name="List" id="scuh_purchase.menu_1_list" parent="scuh_purchase.menu_1"
+                      action="scuh_purchase.action_window"/>
+            <menuitem name="Server to list" id="scuh_purchase" parent="scuh_purchase.menu_2"
+                      action="scuh_purchase.action_server"/>
+        -->
+    </data>
+</odoo>

@@ -1,0 +1,93 @@
+<odoo>
+    <record id="inventory_report" model="ir.actions.report">
+        <field name="name">كارت الصنف </field>
+        <field name="model">modify_purchase.modify_purchase</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">modify_purchase.modify_inventory_report_template</field>
+        <field name="report_file">modify_purchase.modify_product_report_template</field>
+        <field name="binding_model_id" ref="model_modify_purchase_modify_purchase"/>
+    </record>
+    <template id="modify_inventory_report_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.basic_layout">
+                    <div class="page" >
+                        <div style="color: #073e89;margin-top:5px;">
+                            <h4 style="color: #073e89;  float:center; text-align:center; font-family: Hacen !important;">
+                                كارت الصنف</h4>
+                        </div>
+                        <br/>
+                        <br/>
+                        <div>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <!--                                    style="color: #0275d8;-->
+                                    <tr style="color: #0275d8;">
+
+                                        <th>الســـــــــــــــــــــبب</th>
+                                        <th> مرفوض </th>
+                                        <th>مقبول</th>
+                                        <th>النسبة المؤية للفحص</th>
+                                        <th>عدد أو مقدار الوحدة</th>
+                                        <th> الصنف </th>
+
+                                    </tr>
+                                </thead>
+                                <tr>
+<!--                                    t-foreach="o.generate_uni_pdf()" t-as="table"-->
+                                    <tbody >
+<!--                                        t-foreach="table.get('result')" t-as="data"-->
+                                        <tr >
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td>إسم الصنف</td>
+<!--                                            <t t-esc="data.get('score')" />-->
+
+                                        </tr>
+                                    </tbody>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div  style="width:100%">
+                            <div style="float:right; text-align:right !important; width:50%;">
+                                <br></br>
+                                <b>ملاحظات </b>
+                                <br></br>
+                                <p>لجنة الفحص</p>
+                                <br></br>
+                                <p>١.اعتماد السلطة المختصة</p>
+                                <p>٢.الاسم</p>
+                                <p>٣.التوقيع</p>
+                            </div>
+
+                            <div style="float:left; text-align:right !important; width:50%">
+                                <br></br>
+                                <br></br>
+                                <p >  رئيس اللجنة</p>
+                                <br></br>
+                                <p >الإسم</p>
+                                <br></br>
+                                <p >التوقيع</p>
+
+                            </div>
+
+
+
+
+                        </div>
+
+
+
+
+
+                    </div>
+
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

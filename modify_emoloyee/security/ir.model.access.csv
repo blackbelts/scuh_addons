@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+
+
+access_hr_attendancee,hr.attendancee,model_hr_attendancee,base.group_user,1,1,1,1

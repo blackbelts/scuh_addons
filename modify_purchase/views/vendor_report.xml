@@ -1,0 +1,328 @@
+<odoo>
+    <record id="vendor_report" model="ir.actions.report">
+        <field name="name">Vendor proposal</field>
+        <field name="model">modify_purchase.modify_purchase</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">modify_purchase.modify_purchase_report_template</field>
+        <field name="report_file">modify_purchase.modify_purchase_report_template</field>
+        <field name="binding_model_id" ref="model_modify_purchase_modify_purchase"/>
+    </record>
+
+
+    <template id="modify_purchase_report_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.basic_layout">
+                    <div class="page" >
+                        <div style="color: #073e89;margin-top:5px;">
+                            <h4 style="color: #073e89;  float:center; text-align:center; font-family: Hacen !important;">
+                                Vendor proposal</h4>
+                        </div>
+                        <br/>
+                        <br/>
+
+                        <div >
+                            <!--                            style="float:left;width:50%"-->
+                            <div >
+                                <b >Tender No.: </b>
+                                <span t-field="o.tender_no"/>
+                                <br></br>
+                                <b>Draft / approved :</b>
+
+                                <span t-field="o.state"/>
+                                <br></br>
+                                <b> Approved Offer :</b>
+
+                                <span t-field="o.vendorr"/>
+                                <br></br>
+
+                                <b> Offer Line</b>
+
+                                <!--                            <span t-field="o.Hospital"/>-->
+                                <br></br>
+
+                            </div>
+
+                        </div>
+                        <div>
+                            <h6 style="color: #073e89;  float:center; text-align:center; font-family: Hacen !important;">
+                                Technical Criteria</h6>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <!--                                    style="color: #0275d8;-->
+                                    <tr style="color: #0275d8;">
+                                        <th>Product</th>
+                                        <th> Vendor 1 </th>
+                                        <th> Vendor 2 </th>
+                                        <!--                                        <th> Vendor 3 </th>-->
+                                        <th> proposal 1</th>
+                                        <th> proposal 2</th>
+                                        <th> proposal 3</th>
+                                    </tr>
+                                </thead>
+                                <tr>
+                                    <tbody t-foreach="o.get_second_table()" t-as="table">
+                                        <tr t-foreach="table.get('data')" t-as="data">
+                                            <td><t t-esc="data.get('product')" /></td>
+                                            <td><t t-esc="data.get('vendor_1')" /></td>
+                                            <td><t t-esc="data.get('vendor_2')" /></td>
+                                            <td><t t-esc="data.get('vendor_3')" /></td>
+                                            <td><t t-esc="data.get('vendor_4')" /></td>
+                                            <td><t t-esc="data.get('vendor_5')" /></td>
+                                            <!--                                            <td><t t-esc="data.get('score')" /></td>-->
+                                        </tr>
+                                         <tr>
+                                            <t t-foreach="table.get('total')" t-as="total">
+                                                <th > Total</th>
+                                                <td t-esc="total.get('total_vendor_1')" />
+                                                <td t-esc="total.get('total_vendor_2')" />
+                                                <td t-esc="total.get('total_vendor_3')" />
+                                                <td t-esc="total.get('total_vendor_4')" />
+                                                <td t-esc="total.get('total_vendor_5')" />
+                                            </t>
+                                        </tr>
+                                    </tbody>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <br></br>
+                        <div>
+                            <h6 style="color: #073e89;  float:center; text-align:center; font-family: Hacen !important;">
+                                Financial Criteria</h6>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <!--                                    style="color: #0275d8;-->
+                                    <tr style="color: #0275d8;">
+                                        <th>Product</th>
+                                        <th> Vendor 1 </th>
+                                        <th> Vendor 2 </th>
+                                        <!--                                        <th> Vendor 3 </th>-->
+                                        <th> proposal 1</th>
+                                        <th> proposal 2</th>
+                                        <th> proposal 3</th>
+                                    </tr>
+                                </thead>
+                                <tr>
+                                    <tbody t-foreach="o.get_first_table()" t-as="table">
+                                        <tr t-foreach="table.get('data')" t-as="data">
+                                            <td><t t-esc="data.get('product')" /></td>
+                                            <td><t t-esc="data.get('vendor_1')" /></td>
+                                            <td><t t-esc="data.get('vendor_2')" /></td>
+                                            <td><t t-esc="data.get('vendor_3')" /></td>
+                                            <td><t t-esc="data.get('vendor_4')" /></td>
+                                            <td><t t-esc="data.get('vendor_5')" /></td>
+                                            <!--                                            <td><t t-esc="data.get('score')" /></td>-->
+                                        </tr>
+                                        <tr>
+                                            <t t-foreach="table.get('total')" t-as="total">
+                                                <th > Total</th>
+                                                <td t-esc="total.get('total_vendor_1')" />
+                                                <td t-esc="total.get('total_vendor_2')" />
+                                                <td t-esc="total.get('total_vendor_3')" />
+                                                <td t-esc="total.get('total_vendor_4')" />
+                                                <td t-esc="total.get('total_vendor_5')" />
+                                            </t>
+                                        </tr>
+                                    </tbody>
+                                </tr>
+                            </table>
+
+                            <table class="table table-bordered" style=" border:none;" >
+                                <thead>
+                                    <!--                                    style="color: #0275d8;-->
+                                    <tr style="color: #0275d8;">
+                                        <th style=" border:none;" colspan="2">Comment</th>
+                                        <th style=" border:none;" colspan="3"> Text</th>
+                                    </tr>
+                                </thead>
+
+                            </table>
+
+                        </div>
+
+                        <div>
+                            <br></br>
+                            <table class="table table-bordered">
+                                <thead >
+                                    <!--                                    style="color: #0275d8;-->
+                                    <tr style="color: #0275d8; border-right:None !important;">
+                                        <th style="border-bottom:None; border-left:None !important; border-right:None; outline:none; ">Committee Head</th>
+                                        <th style="border-bottom:None; border-left:None; border-right:None; "> Signature</th>
+                                        <th style="border-bottom:None; border-left:None; border-right:None; "> Committee Members</th>
+                                        <!--                                        <th> Vendor 3 </th>-->
+                                        <th style="border-bottom:None; border-left:None; border-right:None; "> Signature</th>
+
+                                    </tr>
+                                </thead>
+                                <tr>
+                                    <!--                                    <tbody t-foreach="o.generate_uni_pdf()" t-as="table">-->
+                                    <!--                                        <tr t-foreach="table.get('result')" t-as="data">-->
+                                    <!--                                            <td><t t-esc="data.get('name')" /></td>-->
+                                    <!--                                            <td><t t-esc="data.get('score')" /></td>-->
+                                    <!--                                        </tr>-->
+                                    <!--                                    </tbody>-->
+                                </tr>
+                            </table>
+                        </div>
+                        <!--                        <div style="float:left;width:50%" >-->
+
+                        <!--                            <br></br>-->
+                        <!--                            <b>Recommendation ( Comment ): </b>-->
+                        <!--                            <br></br>-->
+                        <!--                            <p>Committee Approval Signature</p>-->
+                        <!--                            <br></br>-->
+                        <!--                            <p>Committee Head:</p>-->
+
+                        <!--                            <div style="float:right;">-->
+                        <!--                                <p >Member 1</p>-->
+                        <!--                                <br></br>-->
+                        <!--                                <p >Member 2</p>-->
+                        <!--                                <br></br>-->
+                        <!--                                <p >Member 3</p>-->
+                        <!--                                <br></br>-->
+                        <!--                                 <p > date :-->
+                        <!--                                    <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d/%m/%Y')"/>-->
+
+                        <!--                                </p>-->
+                        <!--                            </div>-->
+
+
+
+
+                        <!--                        </div>-->
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+
+
+
+    <record id="vendor_report_report" model="ir.actions.report">
+        <field name="name">Vendor proposal</field>
+        <field name="model">modify_purchase.modify_purchase</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">modify_purchase.modify_vendor_report_template</field>
+        <field name="report_file">modify_purchase.modify_purchase_report_template</field>
+        <field name="binding_model_id" ref="model_modify_purchase_modify_purchase"/>
+    </record>
+
+
+    <template id="modify_vendor_report_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.basic_layout">
+                    <div class="page" >
+                        <div style="color: #073e89;margin-top:5px;">
+                            <h4 style="color: #073e89;  float:center; text-align:center; font-family: Hacen !important;">
+                                Vendor proposal</h4>
+                        </div>
+                        <br/>
+                        <br/>
+                        <div>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <!--                                    style="color: #0275d8;-->
+                                    <tr style="color: #0275d8;">
+                                        <th> تاريخ الاستلام</th>
+                                        <th> اسم المستلم</th>
+                                        <th>اسم المورد</th>
+
+
+
+                                    </tr>
+                                </thead>
+                                <tr>
+                                    <!--                                    <tbody t-foreach="o.generate_uni_pdf()" t-as="table">-->
+                                    <!--                                        <tr t-foreach="table.get('result')" t-as="data">-->
+                                    <!--                                            <td><t t-esc="data.get('name')" /></td>-->
+                                    <!--                                            <td><t t-esc="data.get('score')" /></td>-->
+                                    <!--                                        </tr>-->
+                                    <!--                                    </tbody>-->
+                                </tr>
+                            </table>
+                        </div>
+
+
+
+
+
+                    </div>
+
+                </t>
+            </t>
+        </t>
+    </template>
+
+
+
+
+
+    <record id="product_report" model="ir.actions.report">
+        <field name="name">كارت الصنف </field>
+        <field name="model">modify_purchase.modify_purchase</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">modify_purchase.modify_product_report_template</field>
+        <field name="report_file">modify_purchase.modify_product_report_template</field>
+        <field name="binding_model_id" ref="model_modify_purchase_modify_purchase"/>
+    </record>
+
+
+    <template id="modify_product_report_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.basic_layout">
+                    <div class="page" >
+                        <div style="color: #073e89;margin-top:5px;">
+                            <h4 style="color: #073e89;  float:center; text-align:center; font-family: Hacen !important;">
+                                كارت الصنف</h4>
+                        </div>
+                        <br/>
+                        <br/>
+                        <div>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <!--                                    style="color: #0275d8;-->
+                                    <tr style="color: #0275d8;">
+                                        <th style="text-align:center !important;" colspan="5">اسم المورد</th>
+                                    </tr>
+                                </thead>
+
+                                <thead>
+                                    <!--                                    style="color: #0275d8;-->
+                                    <tr style="color: #0275d8;">
+
+
+
+                                        <th>الرصيد</th>
+                                        <th> المنصرف </th>
+                                        <th>إسم المورد</th>
+                                        <th>إسم الاداره</th>
+                                        <th>الحركه (اضافه /سحب)</th>
+
+                                    </tr>
+                                </thead>
+                                <tr>
+                                    <!--                                    <tbody t-foreach="o.generate_uni_pdf()" t-as="table">-->
+                                    <!--                                        <tr t-foreach="table.get('result')" t-as="data">-->
+                                    <!--                                            <td><t t-esc="data.get('name')" /></td>-->
+                                    <!--                                            <td><t t-esc="data.get('score')" /></td>-->
+                                    <!--                                        </tr>-->
+                                    <!--                                    </tbody>-->
+                                </tr>
+                            </table>
+                        </div>
+
+
+
+
+
+                    </div>
+
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>
